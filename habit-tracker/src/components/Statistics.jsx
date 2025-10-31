@@ -15,6 +15,7 @@ const Statistics = () => {
   useEffect(() => {
     fetchStats();
     fetchHabits();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchStats = async () => {

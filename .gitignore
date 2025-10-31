@@ -10,6 +10,8 @@ node_modules/
 
 # production
 /build
+build/
+habit-tracker/build/
 
 # environment variables
 .env

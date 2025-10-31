@@ -11,7 +11,14 @@ import Habit from "./models/Habit.js";
 dotenv.config();
 const app = express();
 
-app.use(cors());
+// CORS configuration for production
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || '*',
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // 🔍 Log all incoming requests
@@ -35,6 +42,15 @@ mongoose
 mongoose.connection.on("error", (err) => console.error("⚠️ MongoDB error:", err));
 
 app.get("/", (req, res) => res.send("🚀 Habit Tracker API is running..."));
+
+// Health check endpoint for Render
+app.get("/health", (req, res) => {
+  res.status(200).json({ 
+    status: "healthy",
+    timestamp: new Date(),
+    mongodb: mongoose.connection.readyState === 1 ? "Connected" : "Disconnected"
+  });
+});
 
 // 🧪 Test route to verify API is working
 app.get("/api/test", (req, res) => {

@@ -11,19 +11,20 @@ function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5000/api/signup", {
+      const res = await fetch("/api/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, email, password }),
       });
       const data = await res.json();
       if (res.ok) {
-        alert("Signup successful!");
+        alert("Signup successful! ✅");
         navigate("/login");
       } else {
         alert(data.msg || "Signup failed.");
       }
     } catch (error) {
+      console.error("Signup error:", error);
       alert("Error: " + error.message);
     }
   };

@@ -7,16 +7,19 @@ const Header = ({ user, setUser }) => {
 
   const handleLogout = () => {
     setUser(null);
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     navigate("/login");
   };
 
   return (
     <header className="header">
-      <h2 className="logo">Habit Tracker</h2>
+      <h2 className="logo">🎯 Habit Tracker</h2>
       <nav>
         {user ? (
           <>
             <Link to="/">Dashboard</Link>
+            <Link to="/statistics">Statistics</Link>
             <Link to="/profile">Profile</Link>
             <button onClick={handleLogout}>Logout</button>
           </>

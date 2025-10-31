@@ -1,7 +1,6 @@
 [build]
-  base = "habit-tracker"
   command = "npm install && npm run build"
-  publish = "habit-tracker/build"
+  publish = "build"
 
 [build.environment]
   NODE_VERSION = "18"

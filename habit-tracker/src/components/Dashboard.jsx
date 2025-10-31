@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Dashboard.css";
+import API_BASE_URL from "../config";
 
 const Dashboard = ({ user }) => {
   const [habits, setHabits] = useState([]);
@@ -46,7 +47,7 @@ const Dashboard = ({ user }) => {
 
   const fetchHabits = async () => {
     try {
-      const res = await fetch("/api/habits", {
+      const res = await fetch(`${API_BASE_URL}/api/habits`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -119,7 +120,7 @@ const Dashboard = ({ user }) => {
     }
 
     try {
-      const url = editingHabit ? `/api/habits/${editingHabit._id}` : "/api/habits";
+      const url = editingHabit ? `${API_BASE_URL}/api/habits/${editingHabit._id}` : `${API_BASE_URL}/api/habits`;
       const method = editingHabit ? "PUT" : "POST";
 
       console.log("Sending request to:", url);
@@ -166,7 +167,7 @@ const Dashboard = ({ user }) => {
 
   const toggleHabitCompletion = async (habitId, date = null) => {
     try {
-      const res = await fetch(`/api/habits/${habitId}/toggle`, {
+      const res = await fetch(`${API_BASE_URL}/api/habits/${habitId}/toggle`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -187,7 +188,7 @@ const Dashboard = ({ user }) => {
     if (!window.confirm("Are you sure you want to delete this habit?")) return;
 
     try {
-      const res = await fetch(`/api/habits/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/habits/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });

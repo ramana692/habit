@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Profile.css";
+import API_BASE_URL from "../config";
 
 const Profile = ({ user }) => {
   const [stats, setStats] = useState({
@@ -17,7 +18,7 @@ const Profile = ({ user }) => {
 
   const fetchStats = async () => {
     try {
-      const res = await fetch("/api/habits/stats/overview", {
+      const res = await fetch(`${API_BASE_URL}/api/habits/stats/overview`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.ok) {

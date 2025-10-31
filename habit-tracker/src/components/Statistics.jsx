@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Statistics.css";
+import API_BASE_URL from "../config";
 
 const Statistics = () => {
   const [stats, setStats] = useState({
@@ -18,7 +19,7 @@ const Statistics = () => {
 
   const fetchStats = async () => {
     try {
-      const res = await fetch("/api/habits/stats/overview", {
+      const res = await fetch(`${API_BASE_URL}/api/habits/stats/overview`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.ok) {
@@ -32,7 +33,7 @@ const Statistics = () => {
 
   const fetchHabits = async () => {
     try {
-      const res = await fetch("/api/habits", {
+      const res = await fetch(`${API_BASE_URL}/api/habits`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.ok) {

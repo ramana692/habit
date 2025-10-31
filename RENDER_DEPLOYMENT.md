@@ -34,12 +34,14 @@ Make sure your code is pushed to GitHub: https://github.com/ramana692/habit.git
 In the Render dashboard, go to **Environment** tab and add:
 
 ```
-MONGO_URI=mongodb+srv://habit:root@cluster0.fztxyll.mongodb.net/habittracker?retryWrites=true&w=majority&appName=Cluster0
+MONGO_URI=mongodb+srv://habit:root@cluster0.fztxyll.mongodb.net/habittracker?retryWrites=true&w=majority
 JWT_SECRET=mysecretkey
 PORT=10000
 NODE_ENV=production
 FRONTEND_URL=http://localhost:3000
 ```
+
+**Note**: Remove `&appName=Cluster0` from the MongoDB URI to avoid parsing errors.
 
 **Important**: Update `FRONTEND_URL` later when you deploy your frontend!
 
